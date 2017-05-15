@@ -33,6 +33,7 @@ import java.util.Map;
  */
 public class WaveSideBarView extends View {
 
+
     private static final String TAG = "WaveSlideBarView";
 
     // 计算波浪贝塞尔曲线的角弧长值
@@ -41,7 +42,7 @@ public class WaveSideBarView extends View {
     private OnTouchLetterChangeListener listener;
 
     // 渲染字母表
-    private List<String> mLetters = new ArrayList<>();
+    private List<String> mLetters=new ArrayList<>();
 
     // 当前选中的位置
     private int mChoose = -1;
@@ -114,7 +115,7 @@ public class WaveSideBarView extends View {
     }
 
     public void setRecyclerView(RecyclerView recyclerView) {
-        if (this.recyclerView != recyclerView) {
+        if (this.recyclerView!=recyclerView) {
             this.recyclerView = recyclerView;
             mLinearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
             recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -173,13 +174,17 @@ public class WaveSideBarView extends View {
     }
 
     /**
-     * @param datas       item已按照字母顺序排好序的数据
+     *
+     * @param datas item已按照字母顺序排好序的数据
      * @param onLetterGet 获取你排序所依照的属性
-     * @param from        从RecyclerView的第几项开始，一般设置头部数量
+     * @param from 从RecyclerView的第几项开始，一般设置头部数量
      * @param <T>
      */
     public <T> void setData(List<T> datas, OnLetterGet<T> onLetterGet, int from) {
 
+        if (datas==null||datas.size()<=0){
+            return;
+        }
         mLetters.clear();
         letterPositionMap.clear();
         if (datas != null) {
@@ -209,14 +214,14 @@ public class WaveSideBarView extends View {
         final float y = event.getY();
         final float x = event.getX();
 
-        int startY = mHeight / 2 - (mItemHeight * mLetters.size()) / 2;
+        int startY=mHeight/2-(mItemHeight*mLetters.size())/2;
         final int oldChoose = mChoose;
-        int newChoose = (int) ((y - startY) / mItemHeight);
-        if (newChoose < 0) {
-            newChoose = 0;
+        int newChoose = (int) ((y-startY) / mItemHeight);
+        if (newChoose<0){
+            newChoose=0;
         }
-        if (newChoose > mLetters.size() - 1) {
-            newChoose = mLetters.size() - 1;
+        if (newChoose>mLetters.size()-1){
+            newChoose=mLetters.size()-1;
         }
 
         switch (event.getAction()) {
@@ -268,20 +273,20 @@ public class WaveSideBarView extends View {
     }
 
     private void moveToPosition(int n) {
-        mIndex = n;
+        mIndex =n;
         //先从RecyclerView的LayoutManager中获取第一项和最后一项的Position
         int firstItem = mLinearLayoutManager.findFirstVisibleItemPosition();
         int lastItem = mLinearLayoutManager.findLastVisibleItemPosition();
-        System.out.println(firstItem + "  " + lastItem);
+        System.out.println(firstItem+"  "+lastItem);
         //然后区分情况
-        if (n <= firstItem) {
+        if (n <= firstItem ){
             //当要置顶的项在当前显示的第一个项的前面时
             recyclerView.scrollToPosition(n);
-        } else if (n <= lastItem) {
+        }else if ( n <= lastItem ){
             //当要置顶的项已经在屏幕上显示时
             int top = recyclerView.getChildAt(n - firstItem).getTop();
             recyclerView.scrollBy(0, top);
-        } else {
+        }else{
             //当要置顶的项在当前显示的最后一项的后面时
             recyclerView.scrollToPosition(n);
             //这里这个变量是用在RecyclerView滚动监听里面的
@@ -300,9 +305,12 @@ public class WaveSideBarView extends View {
     }
 
     private void resetItemHeight() {
-        mItemHeight = (mHeight - (int) (2 * mTextSize)) / mLetters.size();
-        if (mItemHeight >= (2 * mTextSize)) {
-            mItemHeight = (int) (2 * mTextSize);
+        if (mLetters.size()<=0){
+            return;
+        }
+        mItemHeight = (mHeight - (int)(2*mTextSize) )/ mLetters.size();
+        if (mItemHeight>=(2*mTextSize)){
+            mItemHeight=(int)(2*mTextSize);
         }
         mPosX = mWidth - 1.6f * mTextSize;
     }
@@ -345,7 +353,7 @@ public class WaveSideBarView extends View {
         mLettersPaint.setAntiAlias(true);
         canvas.drawRoundRect(rectF, mTextSize, mTextSize, mLettersPaint);
 
-        int startY = mHeight / 2 - (mItemHeight * mLetters.size()) / 2;
+        int startY=mHeight/2-(mItemHeight*mLetters.size())/2;
         for (int i = 0; i < mLetters.size(); i++) {
             mLettersPaint.reset();
             mLettersPaint.setColor(mTextColor);
@@ -353,13 +361,13 @@ public class WaveSideBarView extends View {
             mLettersPaint.setTextSize(mTextSize);
             mLettersPaint.setTextAlign(Paint.Align.CENTER);
             Paint.FontMetrics fontMetrics = mLettersPaint.getFontMetrics();
-            float posY = startY + mItemHeight * i + mItemHeight / 2 + ((fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom);
+            float posY = startY+mItemHeight * i +mItemHeight/2+ ((fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom);
 
             if (i == mChoose) {
                 mPosY = posY;
                 Paint paint = new Paint();
                 paint.setColor(Color.parseColor("#ff0000"));
-                canvas.drawRect(rectF.left, startY + mItemHeight * i + 1, rectF.right, startY + mItemHeight * (i + 1) - 1, paint);
+                canvas.drawRect(rectF.left ,startY+mItemHeight*i+1,rectF.right,startY+mItemHeight*(i+1)-1,paint);
             } else {
 
                 canvas.drawText(mLetters.get(i), mPosX, posY, mLettersPaint);
