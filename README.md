@@ -9,9 +9,11 @@ github地址：https://github.com/lvzhihao100/WaveSideBar
   
 只有一个类，很简单，所以你可以直接拷走，根据自己的需求，再定制一番，如果赶时间，直接用，超简单 
 
-1. 先上效果图
+1. 先上效果图 
+
 ![x.gif](http://upload-images.jianshu.io/upload_images/4179767-f84f408ee69b9f81.gif?imageMogr2/auto-orient/strip)
-2. 简要使用说明
+2. 简要使用说明 
+
 设置recyclerview 
 
 ```
