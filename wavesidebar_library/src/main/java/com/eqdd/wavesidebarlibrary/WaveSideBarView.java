@@ -140,24 +140,24 @@ public class WaveSideBarView extends View {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        List<String> strings = Arrays.asList(context.getResources().getStringArray(R.array.waveSideBarLetters));
+        List<String> strings = Arrays.asList(context.getResources().getStringArray(com.eqdd.wavesidebarlibrary.R.array.waveSideBarLetters));
         mLetters.addAll(strings);
 
         mTextColor = Color.parseColor("#969696");
         mWaveColor = Color.parseColor("#be69be91");
         mTextColorChoose = context.getResources().getColor(android.R.color.white);
-        mTextSize = context.getResources().getDimensionPixelSize(R.dimen.textSize_sidebar);
-        mLargeTextSize = context.getResources().getDimensionPixelSize(R.dimen.large_textSize_sidebar);
-        mPadding = context.getResources().getDimensionPixelSize(R.dimen.textSize_sidebar_padding);
+        mTextSize = context.getResources().getDimensionPixelSize(com.eqdd.wavesidebarlibrary.R.dimen.textSize_sidebar);
+        mLargeTextSize = context.getResources().getDimensionPixelSize(com.eqdd.wavesidebarlibrary.R.dimen.large_textSize_sidebar);
+        mPadding = context.getResources().getDimensionPixelSize(com.eqdd.wavesidebarlibrary.R.dimen.textSize_sidebar_padding);
         if (attrs != null) {
-            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.WaveSideBarView);
-            mTextColor = a.getColor(R.styleable.WaveSideBarView_sidebarTextColor, mTextColor);
-            mTextColorChoose = a.getColor(R.styleable.WaveSideBarView_sidebarChooseTextColor, mTextColorChoose);
-            mTextSize = a.getFloat(R.styleable.WaveSideBarView_sidebarTextSize, mTextSize);
-            mLargeTextSize = a.getFloat(R.styleable.WaveSideBarView_sidebarLargeTextSize, mLargeTextSize);
-            mWaveColor = a.getColor(R.styleable.WaveSideBarView_sidebarBackgroundColor, mWaveColor);
-            mRadius = a.getInt(R.styleable.WaveSideBarView_sidebarRadius, context.getResources().getDimensionPixelSize(R.dimen.radius_sidebar));
-            mBallRadius = a.getInt(R.styleable.WaveSideBarView_sidebarBallRadius, context.getResources().getDimensionPixelSize(R.dimen.ball_radius_sidebar));
+            TypedArray a = getContext().obtainStyledAttributes(attrs, com.eqdd.wavesidebarlibrary.R.styleable.WaveSideBarView);
+            mTextColor = a.getColor(com.eqdd.wavesidebarlibrary.R.styleable.WaveSideBarView_sidebarTextColor, mTextColor);
+            mTextColorChoose = a.getColor(com.eqdd.wavesidebarlibrary.R.styleable.WaveSideBarView_sidebarChooseTextColor, mTextColorChoose);
+            mTextSize = a.getFloat(com.eqdd.wavesidebarlibrary.R.styleable.WaveSideBarView_sidebarTextSize, mTextSize);
+            mLargeTextSize = a.getFloat(com.eqdd.wavesidebarlibrary.R.styleable.WaveSideBarView_sidebarLargeTextSize, mLargeTextSize);
+            mWaveColor = a.getColor(com.eqdd.wavesidebarlibrary.R.styleable.WaveSideBarView_sidebarBackgroundColor, mWaveColor);
+            mRadius = a.getInt(com.eqdd.wavesidebarlibrary.R.styleable.WaveSideBarView_sidebarRadius, context.getResources().getDimensionPixelSize(com.eqdd.wavesidebarlibrary.R.dimen.radius_sidebar));
+            mBallRadius = a.getInt(com.eqdd.wavesidebarlibrary.R.styleable.WaveSideBarView_sidebarBallRadius, context.getResources().getDimensionPixelSize(com.eqdd.wavesidebarlibrary.R.dimen.ball_radius_sidebar));
             a.recycle();
         }
 
@@ -341,17 +341,17 @@ public class WaveSideBarView extends View {
         rectF.top = 0;
         rectF.bottom = mHeight;
 
-        mLettersPaint.reset();
-        mLettersPaint.setStyle(Paint.Style.FILL);
-        mLettersPaint.setColor(Color.parseColor("#F9F9F9"));
-        mLettersPaint.setAntiAlias(true);
-        canvas.drawRoundRect(rectF, mTextSize, mTextSize, mLettersPaint);
-
-        mLettersPaint.reset();
-        mLettersPaint.setStyle(Paint.Style.STROKE);
-        mLettersPaint.setColor(mTextColor);
-        mLettersPaint.setAntiAlias(true);
-        canvas.drawRoundRect(rectF, mTextSize, mTextSize, mLettersPaint);
+//        mLettersPaint.reset();
+//        mLettersPaint.setStyle(Paint.Style.FILL);
+//        mLettersPaint.setColor(Color.parseColor("#F9F9F9"));
+//        mLettersPaint.setAntiAlias(true);
+//        canvas.drawRoundRect(rectF, mTextSize, mTextSize, mLettersPaint);
+//
+//        mLettersPaint.reset();
+//        mLettersPaint.setStyle(Paint.Style.STROKE);
+//        mLettersPaint.setColor(mTextColor);
+//        mLettersPaint.setAntiAlias(true);
+//        canvas.drawRoundRect(rectF, mTextSize, mTextSize, mLettersPaint);
 
         int startY=mHeight/2-(mItemHeight*mLetters.size())/2;
         for (int i = 0; i < mLetters.size(); i++) {
